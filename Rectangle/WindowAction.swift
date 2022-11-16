@@ -80,7 +80,8 @@ enum WindowAction: Int, Codable {
     bottomCenterRightEighth = 64,
     bottomRightEighth = 65,
     tileAll = 66,
-    cascadeAll = 67
+    cascadeAll = 67,
+    ignoreFrontApp = 68
 
     // Order matters here - it's used in the menu
     static let active = [leftHalf, rightHalf, centerHalf, topHalf, bottomHalf,
@@ -98,7 +99,7 @@ enum WindowAction: Int, Codable {
                          topLeftThird, topRightThird, bottomLeftThird, bottomRightThird,
                          topLeftEighth, topCenterLeftEighth, topCenterRightEighth, topRightEighth,
                          bottomLeftEighth, bottomCenterLeftEighth, bottomCenterRightEighth, bottomRightEighth,
-                         tileAll, cascadeAll
+                         tileAll, cascadeAll, ignoreFrontApp
     ]
 
     func post() {
@@ -193,6 +194,7 @@ enum WindowAction: Int, Codable {
         case .bottomRightEighth: return "bottomRightEighth"
         case .tileAll: return "tileAll"
         case .cascadeAll: return "cascadeAll"
+        case .ignoreFrontApp: return "ignoreFrontApp"
         }
     }
 
@@ -318,6 +320,9 @@ enum WindowAction: Int, Codable {
         case .bottomRightSixth:
             key = "m2F-eA-g7w.title"
             value = "Bottom Right Sixth"
+        case .ignoreFrontApp:
+            key = "m2F-eA-g7w.title"
+            value = "Ignore Front App"
         case .topLeftNinth, .topCenterNinth, .topRightNinth, .middleLeftNinth, .middleCenterNinth, .middleRightNinth, .bottomLeftNinth, .bottomCenterNinth, .bottomRightNinth:
             return nil
         case .topLeftThird, .topRightThird, .bottomLeftThird, .bottomRightThird:
@@ -480,6 +485,7 @@ enum WindowAction: Int, Codable {
         case .specified, .reverseAll: return NSImage()
         case .tileAll: return NSImage()
         case .cascadeAll: return NSImage()
+        case .ignoreFrontApp: return NSImage(imageLiteralResourceName: "bottomRightSixthTemplate")
         }
     }
 
@@ -519,7 +525,7 @@ enum WindowAction: Int, Codable {
             return Defaults.applyGapsToMaximize.userDisabled ? .none : .both;
         case .maximizeHeight:
             return Defaults.applyGapsToMaximizeHeight.userDisabled ? .none : .vertical;
-        case .almostMaximize, .previousDisplay, .nextDisplay, .larger, .smaller, .center, .restore, .specified, .reverseAll, .tileAll, .cascadeAll:
+        case .almostMaximize, .previousDisplay, .nextDisplay, .larger, .smaller, .center, .restore, .specified, .reverseAll, .tileAll, .cascadeAll, .ignoreFrontApp:
             return .none
         }
     }
