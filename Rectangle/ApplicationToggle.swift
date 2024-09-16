@@ -84,11 +84,22 @@ class ApplicationToggle: NSObject {
     }
     
     public func isDisabled(bundleId: String) -> Bool {
+        print("isDisabled: \(bundleId)")
         return disabledApps.contains(bundleId)
+    }
+    
+    @objc func toggle(_ notification: Notification) {
+        if let application = notification.userInfo?["NSWorkspaceApplicationKey"] as? NSRunningApplication {
+            if let frontAppId = application.bundleIdentifier {
+                print("testing")
+            }
+        }
     }
     
     private func registerFrontAppChangeNote() {
         NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(self.receiveFrontAppChangeNote(_:)), name: NSWorkspace.didActivateApplicationNotification, object: nil)
+        NSWorkspace.shared.notificationCenter.addObserver(self, selector: #selector(self.toggle(_:)), name:
+                .toggleFrontApp, object: nil)
     }
     
     @objc func receiveFrontAppChangeNote(_ notification: Notification) {

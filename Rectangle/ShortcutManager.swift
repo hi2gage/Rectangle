@@ -72,7 +72,7 @@ class ShortcutManager {
     
     @objc func windowActionTriggered(notification: NSNotification) {
         guard var parameters = notification.object as? ExecutionParameters else { return }
-        
+        print("windowActionTriggered: \(parameters.windowId)")
         if MultiWindowManager.execute(parameters: parameters) {
             return
         }

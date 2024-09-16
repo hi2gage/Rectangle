@@ -64,6 +64,8 @@ class PrefsViewController: NSViewController {
     @IBOutlet weak var bottomRightSixthShortcutView: MASShortcutView!
 
     
+    @IBOutlet weak var ignoreFrontAppShortcutView: MASShortcutView!
+    
     @IBOutlet weak var showMoreButton: NSButton!
     @IBOutlet weak var additionalShortcutsStackView: NSStackView!
     
@@ -109,7 +111,8 @@ class PrefsViewController: NSViewController {
             .topRightSixth: topRightSixthShortcutView,
             .bottomLeftSixth: bottomLeftSixthShortcutView,
             .bottomCenterSixth: bottomCenterSixthShortcutView,
-            .bottomRightSixth: bottomRightSixthShortcutView
+            .bottomRightSixth: bottomRightSixthShortcutView,
+            .ignoreFrontApp: ignoreFrontAppShortcutView
         ]
         
         for (action, view) in actionsToViews {
